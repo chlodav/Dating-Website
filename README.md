@@ -44,6 +44,6 @@ The matching engine currently considers:
  📦 Installation
 
 bash
-git clone https://github.com/yourusername/smart-dating.git
-cd smart-dating
-open index.html
+- git clone https://github.com/yourusername/smart-dating.git
+- cd smart-dating
+- open index.html
