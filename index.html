@@ -3,19 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Swipe Match</title>
+  <title>Smart Dating</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="card-stack" id="cardStack"></div>
 
-  <div style="margin-top: 1rem; display: flex; justify-content: center; gap: 1rem;">
-    <button id="reject" style="background-color: red; border: none; padding: 1rem; border-radius: 50%; color: white;">✖</button>
-    <button id="accept" style="background-color: green; border: none; padding: 1rem; border-radius: 50%; color: white;">❤</button>
+  <div class="action-buttons">
+    <button id="reject" aria-label="Reject">✖</button>
+    <button id="accept" aria-label="Accept">❤</button>
   </div>
 
-  <div id="chatPopup" style="display:none; position: fixed; top: 40%; left: 50%; transform: translate(-50%, -50%);
-  background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 5px 20px #0004; z-index: 200;">
+  <div id="chatPopup" role="dialog" aria-modal="true">
     <p>You matched! Say hi to your new friend 🎉</p>
     <button onclick="document.getElementById('chatPopup').style.display='none'">Close</button>
   </div>

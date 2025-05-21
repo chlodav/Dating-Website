@@ -14,17 +14,64 @@ body {
 }
 
 .card-stack {
-	width: 16rem;
-	height: 22rem;
+	width: 32rem;
+	height: 38rem;
 	position: relative;
 	display: grid;
 	grid-auto-flow: column;
-	place-content: center;
+	place-content: end center;
 	user-select: none;
 	touch-action: none;
 	transform-style: preserve-3d;
 }
+  .action-buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
 
+    .action-buttons button {
+      width: 60px;
+      height: 60px;
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #reject {
+      background-color: red;
+    }
+
+    #accept {
+      background-color: green;
+    }
+
+    #chatPopup {
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 5px 20px #0004;
+      z-index: 200;
+      text-align: center;
+    }
+
+    #chatPopup button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
 :root {
 	--card-perspective: 700px;
 	--card-z-offset: 12px;
@@ -36,29 +83,33 @@ body {
 }
 
 .card {
-	cursor: pointer;
-	background-color: #eee;
-	display: grid;
-	place-content: center;
-	place-self: center;
-	position: absolute;
-	width: calc(100% - 2rem);
-	height: calc(100% - 2rem);
-	border: 1px solid #99a;
-	border-radius: 0.75rem;
-	z-index: calc(var(--card-max-z-index) - var(--i));
-	transform: perspective(var(--card-perspective))
-		translateZ(calc(-1 * var(--card-z-offset) * var(--i)))
-		translateY(calc(var(--card-y-offset) * var(--i)))
-		translateX(var(--swipe-x, 0px)) rotateY(var(--swipe-rotate, 0deg));
-	transition: transform var(--card-swap-duration) ease;
-	will-change: transform;
-	box-shadow: 0 2px 2px #0003;
-	background: white;
-	padding: 1rem;
-	text-align: center;
+  cursor: pointer;
+  background: white;
+  display: grid;
+  place-content: end center;
+  position: absolute;
+  inset: 1rem; /* replaces width, height, and manual centering */
+  
+  border: 1px solid #99a;
+  border-radius: 1.75rem;
+  box-shadow: 0 2px 2px #0003;
+  padding: 1rem;
+  text-align: center;
+
+  /* Card stacking & animation */
+  z-index: var(--i);
+  transition: transform var(--card-swap-duration, 0.4s) ease, opacity var(--card-swap-duration, 0.4s) ease;
+  will-change: transform, opacity;
+
+  /* UX: prevent accidental text highlighting while dragging/swiping */
+  user-select: none;
 }
 
+
+.reject, .accept {
+
+	margin: 40px;
+}
 .card h2 {
 	margin-bottom: 0.5rem;
 }
@@ -66,6 +117,11 @@ body {
 .card p {
 	font-size: 0.85rem;
 	color: #333;
+}
+
+button {
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .a { background: linear-gradient(45deg, #32de84, #deb); }
